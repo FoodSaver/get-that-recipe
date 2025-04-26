@@ -1,7 +1,29 @@
+'use client'
+import {useEffect} from 'react'
 import Image from "next/image";
-import styles from "./page.module.css";
+import styles from "../page.module.css";
+import getRecipeData from '@dimfu/recipe-scraper'
+
+const URL_SUBSTRING_FOR_CORS_ISSUE = 'https://cors-anywhere.herokuapp.com'
+const RECIPE_LINK = 'https://www.allrecipes.com/recipe/268091/easy-korean-ground-beef-bowl'
 
 export default function Home() {
+    async function parseRecipe(url = RECIPE_LINK) {
+        // try {
+        //     const recipe = await getRecipeData(`${URL_SUBSTRING_FOR_CORS_ISSUE}/${RECIPE_LINK}`)
+        //     console.log('recipe', recipe)
+        // } catch(e) {
+        //     console.log('catch', e)
+        // }
+
+  const recipe = await getRecipeData(RECIPE_LINK)
+  console.log(recipe)
+     
+      }
+
+    useEffect(() => {
+        parseRecipe()
+    }, [])
   return (
     <div className={styles.page}>
       <main className={styles.main}>
